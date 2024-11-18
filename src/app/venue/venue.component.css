@@ -1,0 +1,23 @@
+.venue {
+    border: 1px solid #ddd;
+    padding: 1em;
+    margin-bottom: 1em;
+  }
+  
+  .venue-images img {
+    width: 100px;
+    height: auto;
+    margin-right: 0.5em;
+  }
+  
+  .pagination {
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .pagination button {
+    padding: 0.5em 1em;
+  }
+  

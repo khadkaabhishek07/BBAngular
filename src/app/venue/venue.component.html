@@ -1,0 +1,41 @@
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+  <!-- Sidebar Start -->
+  <!-- Add your sidebar here if necessary -->
+  <!-- Sidebar End -->
+
+  <!-- Main wrapper -->
+  <div class="body-wrapper">
+    <!-- Header Start -->
+    <header class="app-header">
+      <!-- Header content (can be reused from add-venue if shared) -->
+    </header>
+    <!-- Header End -->
+
+    <!-- Main content -->
+    <div class="container-fluid">
+      <h2>Venue Listings</h2>
+
+      <div *ngFor="let venue of venues" class="venue card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">{{ venue.name }}</h5>
+          <p><strong>Address:</strong> {{ venue.address }}</p>
+          <p><strong>Description:</strong> {{ venue.description }}</p>
+          <p><strong>Status:</strong> {{ venue.status }}</p>
+          <p><strong>Starting Price:</strong> {{ venue.startingPrice }}</p>
+          <p><strong>Max Capacity:</strong> {{ venue.maxCapacity }}</p>
+
+          <div class="venue-images">
+            <img *ngFor="let imgPath of venue.venueImagePaths" [src]="imgPath" alt="Venue Image" class="img-thumbnail me-2">
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination controls -->
+      <div class="pagination">
+        <button (click)="goToPreviousPage()" [disabled]="currentPage === 1" class="btn btn-secondary me-2">Previous</button>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <button (click)="goToNextPage()" [disabled]="currentPage === totalPages" class="btn btn-secondary ms-2">Next</button>
+      </div>
+    </div>
+  </div>
+</div>

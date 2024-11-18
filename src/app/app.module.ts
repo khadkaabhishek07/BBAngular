@@ -10,12 +10,17 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth.interceptor';
+import { VenueComponent } from './venue/venue.component';
+import { AddVenueComponent } from './add-venue/add-venue.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    VenueComponent,     
+    AddVenueComponent, NavbarComponent
   ],
   imports: [
     BrowserModule,

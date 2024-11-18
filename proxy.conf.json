@@ -1,0 +1,9 @@
+{
+    "/bandobasta/api": {
+      "target": "https://bandobasta.onrender.com",
+      "secure": true,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }
+  

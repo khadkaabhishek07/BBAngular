@@ -1,0 +1,108 @@
+<!-- <header class="app-header">
+    <nav class="navbar">
+        <div class="container-fluid d-flex justify-content-between">
+            <h3>Admin Panel</h3>
+            <button (click)="logout()" class="btn btn-danger">Logout</button>
+        </div>
+    </nav>
+</header> -->
+
+<body>
+    <!-- Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+        <!-- Sidebar Start -->
+         <!-- Sidebar End -->
+
+        <!-- Main wrapper -->
+        <div class="body-wrapper">
+            <!-- Header Start -->
+            <header class="app-header">
+                <!-- Header content -->
+            </header> <!-- Header End -->
+
+            <!-- Main content goes here -->
+            <div class="container-fluid">
+                <h2>Add New Venue</h2>
+                <form (ngSubmit)="addVenue()">
+                    <div class="mb-3">
+                        <label for="ownerId" class="form-label">Owner ID</label>
+                        <input type="text" id="ownerId" [(ngModel)]="venueDetails.ownerId" name="ownerId" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Venue Name</label>
+                        <input type="text" id="name" [(ngModel)]="venueDetails.name" name="name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="country" class="form-label">Country</label>
+                        <input type="text" id="country" [(ngModel)]="venueDetails.country" name="country" class="form-control" value="Nepal" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="state" class="form-label">State</label>
+                        <input type="text" id="state" [(ngModel)]="venueDetails.state" name="state" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="district" class="form-label">District</label>
+                        <input type="text" id="district" [(ngModel)]="venueDetails.district" name="district" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="city" class="form-label">City</label>
+                        <input type="text" id="city" [(ngModel)]="venueDetails.city" name="city" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="streetName" class="form-label">Street Name</label>
+                        <input type="text" id="streetName" [(ngModel)]="venueDetails.streetName" name="streetName" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="streetNumber" class="form-label">Street Number</label>
+                        <input type="text" id="streetNumber" [(ngModel)]="venueDetails.streetNumber" name="streetNumber" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" [(ngModel)]="venueDetails.email" name="email" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="primaryPhoneNumber" class="form-label">Primary Phone Number</label>
+                        <input type="text" id="primaryPhoneNumber" [(ngModel)]="venueDetails.primaryPhoneNumber" name="primaryPhoneNumber" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="secondaryPhoneNumber" class="form-label">Secondary Phone Number</label>
+                        <input type="text" id="secondaryPhoneNumber" [(ngModel)]="venueDetails.secondaryPhoneNumber" name="secondaryPhoneNumber" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="countryCode" class="form-label">Country Code</label>
+                        <input type="text" id="countryCode" [(ngModel)]="venueDetails.countryCode" name="countryCode" class="form-control" value="+977" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="registrationNumber" class="form-label">Registration Number</label>
+                        <input type="text" id="registrationNumber" [(ngModel)]="venueDetails.registrationNumber" name="registrationNumber" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="licenseNumber" class="form-label">License Number</label>
+                        <input type="text" id="licenseNumber" [(ngModel)]="venueDetails.licenseNumber" name="licenseNumber" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="permanentAccountNumber" class="form-label">PAN</label>
+                        <input type="text" id="permanentAccountNumber" [(ngModel)]="venueDetails.permanentAccountNumber" name="permanentAccountNumber" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea id="description" [(ngModel)]="venueDetails.description" name="description" class="form-control" rows="4" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="panImage" class="form-label">PAN Image</label>
+                        <input type="file" id="panImage" (change)="onPanImageChange($event)" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="licenseImage" class="form-label">License Image</label>
+                        <input type="file" id="licenseImage" (change)="onLicenseImageChange($event)" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="venueImages" class="form-label">Venue Images</label>
+                        <input type="file" id="venueImages" (change)="onVenueImagesChange($event)" class="form-control" multiple>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Venue</button>
+                </form>
+            </div>            
+        </div> 
+    </div> 
+</body>

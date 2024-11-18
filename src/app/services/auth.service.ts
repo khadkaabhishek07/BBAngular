@@ -25,11 +25,17 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string): Observable<LoginResponse> {
-    const url = `${this.baseUrl}user/authenticate/login`;
+    //const url = `${this.baseUrl}/user/authenticate/login`;
+    
+    const url = `https://bandobasta.onrender.com/bandobasta/api/v1/user/authenticate/login`;
     const body = { username, password };
-    return this.http.post<LoginResponse>(url, body).pipe(
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': '*/*'
+    });
+
+    return this.http.post<LoginResponse>(url, body, { headers }).pipe(
       tap(response => {
-        // Store JWT token in local storage
         if (response.data && response.data.accessToken) {
           localStorage.setItem(this.tokenKey, response.data.accessToken);
         }
