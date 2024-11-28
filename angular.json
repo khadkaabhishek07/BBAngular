@@ -27,7 +27,7 @@
             "styles": [
               "src/assets/css/styles.css"
             ],
-            "scripts": [
+            "scripts": [              
               "src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },

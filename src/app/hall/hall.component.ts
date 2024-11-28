@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HallService } from '../services/hall.service';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-hall',
@@ -54,6 +55,23 @@ export class HallComponent implements OnInit {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
       this.loadHalls();
+    }
+  }
+  // Method to go to the previous slide
+  prevSlide(hallId: number) {
+    const carouselElement = document.getElementById(`carousel${hallId}`);
+    if (carouselElement) {
+      const carousel = new bootstrap.Carousel(carouselElement);
+      carousel.prev();
+    }
+  }
+
+  // Method to go to the next slide
+  nextSlide(hallId: number) {
+    const carouselElement = document.getElementById(`carousel${hallId}`);
+    if (carouselElement) {
+      const carousel = new bootstrap.Carousel(carouselElement);
+      carousel.next();
     }
   }
 }

@@ -1,0 +1,71 @@
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <!-- Add your sidebar here if necessary -->
+    <!-- Sidebar End -->
+  
+    <!-- Main wrapper -->
+    <div class="body-wrapper">
+      <!-- Header Start -->
+      <header class="app-header">
+        <!-- Header content (can be reused from add-venue if shared) -->
+      </header>
+      <!-- Header End -->
+  
+      <!-- Main content -->
+      <div class="container-fluid">
+  
+        <h2>Add Availability for Hall ID: {{ hallId }}</h2>
+
+    <!-- Date Picker -->
+    <div class="mb-3">
+        <label for="datePicker" class="form-label">Select Date:</label>
+        <input type="date" id="datePicker" [(ngModel)]="selectedDate" (change)="onDateChange(selectedDate)" class="form-control">
+    </div>
+
+    <!-- Available Slots Table -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let slot of availabilityDetails">
+                <td>{{ slot.startTime }}</td>
+                <td>{{ slot.endTime }}</td>
+                <td>{{ slot.status }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Form to Add New Availability -->
+    <form (ngSubmit)="saveAvailability()" #availabilityForm="ngForm">
+        <div class="mb-3">
+            <label for="startTime" class="form-label">Start Time:</label>
+            <select id="startTime" [(ngModel)]="newAvailability.startTime" name="startTime" required class="form-select">
+                <option *ngFor="let time of timeSlots" [value]="time">{{ time }}</option>
+            </select>
+        </div>
+    
+        <div class="mb-3">
+            <label for="endTime" class="form-label">End Time:</label>
+            <select id="endTime" [(ngModel)]="newAvailability.endTime" name="endTime" required class="form-select">
+                <option *ngFor="let time of timeSlots" [value]="time">{{ time }}</option>
+            </select>
+        </div>
+    
+        <button type="submit" class="btn btn-primary">Save Availability</button>
+    </form>
+        
+         
+      
+      </div>
+    </div>
+  </div>
+
+
+  
+
+

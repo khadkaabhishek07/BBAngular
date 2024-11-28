@@ -16,40 +16,61 @@
         <h2>Your Halls</h2>
   
         <div *ngIf="halls.length > 0; else noHallsFound">
-            <div *ngFor="let hall of halls" class="card mb-3">
-              <div class="card-body">
-                <h5 class="card-title">{{ hall.name }}</h5>
-                <p><strong>Description:</strong> {{ hall.description }}</p>
-                <p><strong>Floor Number:</strong> {{ hall.floorNumber }}</p>
-                <p><strong>Capacity:</strong> {{ hall.capacity }}</p>
-                <p><strong>Status:</strong> {{ hall.status }}</p>
-          
-                <div class="hall-images">
-                  <img
-                    *ngFor="let imgPath of hall.hallImagePaths"
-                    [src]="imgPath"
-                    alt="Hall Image"
-                    class="img-thumbnail me-2"
-                  />
-                </div>
+          <div *ngFor="let hall of halls" class="card mb-3">
+              <div class="row g-0">
+                  <!-- Hall Content -->
+                  <div class="col-md-6">
+                      <div class="card-body">
+                          <h5 class="card-title">{{ hall.name }}</h5>
+                          <p><strong>Description:</strong> {{ hall.description }}</p>
+                          <p><strong>Floor Number:</strong> {{ hall.floorNumber }}</p>
+                          <p><strong>Capacity:</strong> {{ hall.capacity }}</p>
+                          <p><strong>Status:</strong> {{ hall.status }}</p>
+                          <button class="btn btn-success" [routerLink]="['/add-availability', hall.id, hall.venueId]">Add Availability</button>
+                      </div>
+                  </div>
+      
+                  <!-- Hall Images Carousel -->
+                  <div class="col-md-6">
+                      <div id="carousel{{ hall.id }}" class="carousel slide" data-bs-ride="carousel">
+                          <div class="carousel-inner">
+                              <div *ngFor="let imgPath of hall.hallImagePaths; let i = index" 
+                                   class="carousel-item" [class.active]="i === 0">
+                                  <img [src]="imgPath" class="d-block w-100 img-thumbnail" alt="Hall Image">
+                              </div>
+                          </div>
+                          <!-- Carousel Controls -->
+                          <!-- Carousel Controls -->
+<button class="carousel-control-prev" type="button" (click)="prevSlide(hall.id)">
+  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Previous</span>
+</button>
+<button class="carousel-control-next" type="button" (click)="nextSlide(hall.id)">
+  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Next</span>
+</button>
+                      </div>
+                  </div>
               </div>
-            </div>
-          
-            <!-- Pagination Controls -->
-            <div class="pagination mt-3">
-              <button class="btn btn-outline-primary" (click)="goToPreviousPage()" [disabled]="currentPage === 1">
-                Previous
-              </button>
-              <span class="mx-3">Page {{ currentPage }} of {{ totalPages }}</span>
-              <button class="btn btn-outline-primary" (click)="goToNextPage()" [disabled]="currentPage === totalPages">
-                Next
-              </button>
-            </div>
           </div>
-          
-          <ng-template #noHallsFound>
-            <p>No halls found for this venue.</p>
-          </ng-template>
+      
+          <!-- Pagination Controls -->
+          <div class="pagination mt-3 d-flex justify-content-between align-items-center">
+              <button class="btn btn-outline-primary" (click)="goToPreviousPage()" [disabled]="currentPage === 1">
+                  Previous
+              </button>
+              <span>Page {{ currentPage }} of {{ totalPages }}</span>
+              <button class="btn btn-outline-primary" (click)="goToNextPage()" [disabled]="currentPage === totalPages">
+                  Next
+              </button>
+          </div>
+      </div>
+      
+      <ng-template #noHallsFound>
+          <div class="alert alert-warning" role="alert">
+              No halls found.
+          </div>
+      </ng-template>
         
          
       

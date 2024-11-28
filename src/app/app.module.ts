@@ -16,6 +16,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AddHallComponent } from './add-hall/add-hall.component';
 import { HallComponent } from './hall/hall.component';
 import { HallService } from './services/hall.service';
+import { AddAvailabilityComponent } from './add-availability/add-availability.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { HallService } from './services/hall.service';
     LoginComponent,
     DashboardComponent,
     VenueComponent,     
-    AddVenueComponent, NavbarComponent, AddHallComponent, HallComponent
+    AddVenueComponent, NavbarComponent, AddHallComponent, HallComponent, AddAvailabilityComponent
   ],
   imports: [
     BrowserModule,
