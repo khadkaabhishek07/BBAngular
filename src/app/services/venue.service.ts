@@ -7,16 +7,20 @@ import { Observable } from 'rxjs';
 })
 export class VenueService {
   private baseUrl = 'https://bandobasta.onrender.com/bandobasta/api/v1/venue';
-  //private baseUrl = '/bandobasta/api/v1/venue';
 
   constructor(private http: HttpClient) {}
 
-  // Fetch paginated venues
+  // Fetch paginated venues for admin
   getVenues(page: number, size: number): Observable<any> {
     const params = new HttpParams()
       .set('page', page.toString())
       .set('size', size.toString());
-      
     return this.http.get<any>(`${this.baseUrl}/findAll`, { params });
+  }
+
+  // Fetch venues by ownerId
+  getVenuesByOwner(ownerId: string): Observable<any> {
+    const params = new HttpParams().set('ownerId', ownerId);
+    return this.http.get<any>(`${this.baseUrl}/findByOwner`, { params });
   }
 }

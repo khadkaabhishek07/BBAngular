@@ -14,6 +14,8 @@ import { VenueComponent } from './venue/venue.component';
 import { AddVenueComponent } from './add-venue/add-venue.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AddHallComponent } from './add-hall/add-hall.component';
+import { HallComponent } from './hall/hall.component';
+import { HallService } from './services/hall.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,7 @@ import { AddHallComponent } from './add-hall/add-hall.component';
     LoginComponent,
     DashboardComponent,
     VenueComponent,     
-    AddVenueComponent, NavbarComponent, AddHallComponent
+    AddVenueComponent, NavbarComponent, AddHallComponent, HallComponent
   ],
   imports: [
     BrowserModule,

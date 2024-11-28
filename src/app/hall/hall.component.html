@@ -1,0 +1,61 @@
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <!-- Add your sidebar here if necessary -->
+    <!-- Sidebar End -->
+  
+    <!-- Main wrapper -->
+    <div class="body-wrapper">
+      <!-- Header Start -->
+      <header class="app-header">
+        <!-- Header content (can be reused from add-venue if shared) -->
+      </header>
+      <!-- Header End -->
+  
+      <!-- Main content -->
+      <div class="container-fluid">
+        <h2>Your Halls</h2>
+  
+        <div *ngIf="halls.length > 0; else noHallsFound">
+            <div *ngFor="let hall of halls" class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title">{{ hall.name }}</h5>
+                <p><strong>Description:</strong> {{ hall.description }}</p>
+                <p><strong>Floor Number:</strong> {{ hall.floorNumber }}</p>
+                <p><strong>Capacity:</strong> {{ hall.capacity }}</p>
+                <p><strong>Status:</strong> {{ hall.status }}</p>
+          
+                <div class="hall-images">
+                  <img
+                    *ngFor="let imgPath of hall.hallImagePaths"
+                    [src]="imgPath"
+                    alt="Hall Image"
+                    class="img-thumbnail me-2"
+                  />
+                </div>
+              </div>
+            </div>
+          
+            <!-- Pagination Controls -->
+            <div class="pagination mt-3">
+              <button class="btn btn-outline-primary" (click)="goToPreviousPage()" [disabled]="currentPage === 1">
+                Previous
+              </button>
+              <span class="mx-3">Page {{ currentPage }} of {{ totalPages }}</span>
+              <button class="btn btn-outline-primary" (click)="goToNextPage()" [disabled]="currentPage === totalPages">
+                Next
+              </button>
+            </div>
+          </div>
+          
+          <ng-template #noHallsFound>
+            <p>No halls found for this venue.</p>
+          </ng-template>
+        
+         
+      
+      </div>
+    </div>
+  </div>
+
+
+  

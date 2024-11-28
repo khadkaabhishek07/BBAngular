@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VenueService } from '../services/venue.service';
 import { Router } from '@angular/router';
-
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-venue',
@@ -13,33 +13,71 @@ export class VenueComponent implements OnInit {
   currentPage: number = 1;
   totalPages: number = 1;
   pageSize: number = 2;
+  ownerId: string | null = null; // For owner-specific venues
 
-  constructor(private venueService: VenueService, private router: Router) {}
+  constructor(
+    private venueService: VenueService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.loadVenues(this.currentPage);
+    // Check role and load venues accordingly
+    if (this.authService.isAdmin()) {
+      this.loadVenues(this.currentPage);
+    } else if (this.authService.isOwner()) {
+      this.ownerId = this.authService.getRoles().includes('ROLE_OWNER') ? this.authService.getUserId() : null; // Replace '1' with dynamic owner ID if available
+      this.loadOwnerVenues(this.ownerId!);
+    }
   }
 
   navigateToAddHall(venueId: number): void {
-    // Navigate to the Add Hall page and pass the venue ID as a query parameter
     this.router.navigate(['/addhall'], { queryParams: { venueId } });
   }
- 
+
+  navigateToViewHalls(venueId: number): void {
+    this.router.navigate(['/halls'], { queryParams: { venueId } });
+  }
+  
+
+  private parseVenueResponse(response: any): void {
+    if (response?.data?.venues) {
+      this.venues = response.data.venues; // Extract venues array
+      this.currentPage = response.data.currentPage;
+      this.totalPages = response.data.totalPages;
+    } else {
+      console.error('Unexpected response structure:', response);
+      this.venues = []; // Fallback to an empty array
+    }
+  }
+  
 
   loadVenues(page: number): void {
     this.venueService.getVenues(page, this.pageSize).subscribe({
       next: response => {
-        this.venues = response.data.venues;
-        this.currentPage = response.data.currentPage;
-        this.totalPages = response.data.totalPages;
+        this.parseVenueResponse(response);
       },
       error: error => {
         console.error('Error fetching venues:', error);
+        this.venues = []; // Fallback to an empty array on error
       }
     });
   }
+  
+  loadOwnerVenues(ownerId: string): void {
+    this.venueService.getVenuesByOwner(ownerId).subscribe({
+      next: response => {
+        this.parseVenueResponse(response); // Reuse the shared parsing logic
+      },
+      error: error => {
+        console.error('Error fetching owner-specific venues:', error);
+        this.venues = []; // Fallback to an empty array on error
+      }
+    });
+  }
+  
+  
 
-  // Pagination controls
   goToPreviousPage(): void {
     if (this.currentPage > 1) {
       this.loadVenues(this.currentPage - 1);

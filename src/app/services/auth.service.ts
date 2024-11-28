@@ -12,6 +12,7 @@ interface LoginResponse {
     id: string;
     type: string;
     accessToken: string;
+    roles: string[]; // Added roles
   };
 }
 
@@ -21,12 +22,13 @@ interface LoginResponse {
 export class AuthService {
   private baseUrl = environment.baseUrl;
   private tokenKey = 'jwt_token';
-  
+  private rolesKey = 'user_roles';
+  private userIdKey = 'user_id'; // Key to store user ID locally
+
+
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string): Observable<LoginResponse> {
-    //const url = `${this.baseUrl}/user/authenticate/login`;
-    
     const url = `https://bandobasta.onrender.com/bandobasta/api/v1/user/authenticate/login`;
     const body = { username, password };
     const headers = new HttpHeaders({
@@ -39,6 +41,12 @@ export class AuthService {
         if (response.data && response.data.accessToken) {
           localStorage.setItem(this.tokenKey, response.data.accessToken);
         }
+        if (response.data && response.data.roles) {
+          localStorage.setItem(this.rolesKey, JSON.stringify(response.data.roles));
+        }
+        if (response.data && response.data.id) {
+          localStorage.setItem(this.userIdKey, response.data.id); // Store user ID
+        }
       })
     );
   }
@@ -47,11 +55,30 @@ export class AuthService {
     return localStorage.getItem(this.tokenKey);
   }
 
+  getUserId(): string | null {
+    return localStorage.getItem(this.userIdKey);
+  }
+
+  getRoles(): string[] {
+    const roles = localStorage.getItem(this.rolesKey);
+    return roles ? JSON.parse(roles) : [];
+  }
+
   isAuthenticated(): boolean {
     return !!this.getToken();
   }
-  
+
+  isAdmin(): boolean {
+    return this.getRoles().includes('ROLE_ADMIN');
+  }
+
+  isOwner(): boolean {
+    return this.getRoles().includes('ROLE_OWNER');
+  }
+
   logout(): void {
     localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem(this.rolesKey);
+    localStorage.removeItem(this.userIdKey);
   }
 }
