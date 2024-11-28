@@ -1,0 +1,123 @@
+<body>
+    <!-- Body Wrapper -->
+    <div
+      class="page-wrapper"
+      id="main-wrapper"
+      data-layout="vertical"
+      data-navbarbg="skin6"
+      data-sidebartype="full"
+      data-sidebar-position="fixed"
+      data-header-position="fixed"
+    >
+      <!-- Sidebar Start -->
+      <!-- Sidebar End -->
+  
+      <!-- Main wrapper -->
+      <div class="body-wrapper">
+        <!-- Header Start -->
+        <header class="app-header">
+          <!-- Header content -->
+        </header>
+        <!-- Header End -->
+  
+        <!-- Main content goes here -->
+        <div class="container-fluid">
+          <h2>Add New Hall</h2>
+          <form (ngSubmit)="addHall()">
+            <div class="mb-3">
+              <label for="venueId" class="form-label">Venue ID</label>
+              <input
+                type="text"
+                id="venueId"
+                [(ngModel)]="hallDetails.venueId"
+                name="venueId"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="name" class="form-label">Hall Name</label>
+              <input
+                type="text"
+                id="name"
+                [(ngModel)]="hallDetails.name"
+                name="name"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea
+                id="description"
+                [(ngModel)]="hallDetails.description"
+                name="description"
+                class="form-control"
+                rows="4"
+                required
+              ></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="floorNumber" class="form-label">Floor Number</label>
+              <input
+                type="number"
+                id="floorNumber"
+                [(ngModel)]="hallDetails.floorNumber"
+                name="floorNumber"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="capacity" class="form-label">Capacity</label>
+              <input
+                type="number"
+                id="capacity"
+                [(ngModel)]="hallDetails.capacity"
+                name="capacity"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label">Price</label>
+              <input
+                type="number"
+                id="price"
+                [(ngModel)]="hallDetails.price"
+                name="price"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="status" class="form-label">Status</label>
+              <select
+                id="status"
+                [(ngModel)]="hallDetails.status"
+                name="status"
+                class="form-control"
+                required
+              >
+                <option value="available">Available</option>
+                <option value="unavailable">Unavailable</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="hallImages" class="form-label">Hall Images</label>
+              <input
+                type="file"
+                id="hallImages"
+                (change)="onHallImagesChange($event)"
+                class="form-control"
+                accept=".jpg,.jpeg,.png"
+                multiple
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Add Hall</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+  

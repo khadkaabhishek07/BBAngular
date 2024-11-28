@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Import FormsModule
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,7 @@ import { AuthInterceptor } from './services/auth.interceptor';
 import { VenueComponent } from './venue/venue.component';
 import { AddVenueComponent } from './add-venue/add-venue.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AddHallComponent } from './add-hall/add-hall.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +21,12 @@ import { NavbarComponent } from './navbar/navbar.component';
     LoginComponent,
     DashboardComponent,
     VenueComponent,     
-    AddVenueComponent, NavbarComponent
+    AddVenueComponent, NavbarComponent, AddHallComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     FormsModule,          // Add FormsModule here
     HttpClientModule       // Add HttpClientModule for API calls
   ],

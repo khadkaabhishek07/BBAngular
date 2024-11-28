@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VenueService } from '../services/venue.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-venue',
@@ -12,11 +14,17 @@ export class VenueComponent implements OnInit {
   totalPages: number = 1;
   pageSize: number = 2;
 
-  constructor(private venueService: VenueService) {}
+  constructor(private venueService: VenueService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadVenues(this.currentPage);
   }
+
+  navigateToAddHall(venueId: number): void {
+    // Navigate to the Add Hall page and pass the venue ID as a query parameter
+    this.router.navigate(['/addhall'], { queryParams: { venueId } });
+  }
+ 
 
   loadVenues(page: number): void {
     this.venueService.getVenues(page, this.pageSize).subscribe({

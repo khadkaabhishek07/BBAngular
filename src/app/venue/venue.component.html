@@ -23,12 +23,25 @@
           <p><strong>Status:</strong> {{ venue.status }}</p>
           <p><strong>Starting Price:</strong> {{ venue.startingPrice }}</p>
           <p><strong>Max Capacity:</strong> {{ venue.maxCapacity }}</p>
-
+      
           <div class="venue-images">
-            <img *ngFor="let imgPath of venue.venueImagePaths" [src]="imgPath" alt="Venue Image" class="img-thumbnail me-2">
+            <img
+              *ngFor="let imgPath of venue.venueImagePaths"
+              [src]="imgPath"
+              alt="Venue Image"
+              class="img-thumbnail me-2"
+            />
           </div>
+      
+          <button
+            class="btn btn-primary mt-3"
+            (click)="navigateToAddHall(venue.id)"
+          >
+            Add Hall
+          </button>          
         </div>
       </div>
+      
 
       <!-- Pagination controls -->
       <div class="pagination">
