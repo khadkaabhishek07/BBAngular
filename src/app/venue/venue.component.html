@@ -15,44 +15,49 @@
     <div class="container-fluid">
       <h2>Venue Listings</h2>
 
+     
       <div *ngFor="let venue of venues" class="venue card mb-4">
-        <div class="card-body">
-          <h5 class="card-title">{{ venue.name }}</h5>
-          <p><strong>Address:</strong> {{ venue.address }}</p>
-          <p><strong>Description:</strong> {{ venue.description }}</p>
-          <p><strong>Status:</strong> {{ venue.status }}</p>
-          <p><strong>Starting Price:</strong> {{ venue.startingPrice }}</p>
-          <p><strong>Max Capacity:</strong> {{ venue.maxCapacity }}</p>
-      
-          <div class="venue-images">
-            <img
-              *ngFor="let imgPath of venue.venueImagePaths"
-              [src]="imgPath"
-              alt="Venue Image"
-              class="img-thumbnail me-2"
-            />
-          </div>
-      
-          <button
-            class="btn btn-primary mt-3"
-            (click)="navigateToAddHall(venue.id)"
-          >
-            Add Hall
-          </button>  
-          <button
-  class="btn btn-secondary mt-3"
-  (click)="navigateToViewHalls(venue.id)"
->
-  View Halls
-</button>
-        
+        <div class="card-body d-flex">
+            <div class="venue-images me-3" style="flex: 0 0 30%;">
+                <div id="carousel{{ venue.id }}" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div *ngFor="let imgPath of venue.venueImagePaths; let i = index" 
+                             class="carousel-item" [class.active]="i === 0">
+                            <img [src]="imgPath" class="d-block w-100 img-thumbnail" alt="Venue Image">
+                        </div>
+                    </div>
+                    <!-- Carousel Controls -->
+                    <button class="carousel-control-prev" type="button" (click)="prevSlide(venue.id)">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" (click)="nextSlide(venue.id)">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+    
+            <div class="venue-details flex-grow-1" style="flex: 0 0 70%;">
+                <h5 class="card-title text-center">{{ venue.name }}</h5>
+                <p><strong>Address:</strong> {{ venue.address }}</p>
+                <p><strong>Description:</strong> {{ venue.description }}</p>
+                <p><strong>Status:</strong> {{ venue.status }}</p>
+                <p><strong>Starting Price:</strong> {{ venue.startingPrice }}</p>
+                <p><strong>Max Capacity:</strong> {{ venue.maxCapacity }}</p>
+    
+                <div class="button-group mt-3">
+                    <button class="btn btn-primary" (click)="navigateToAddHall(venue.id)">Add Hall</button>
+                    <button class="btn btn-secondary" (click)="navigateToViewHalls(venue.id)">View Halls</button>
+                </div>
+            </div>
         </div>
-      </div>
+    </div>
       
       
 
       <!-- Pagination controls -->
-      <div class="pagination">
+      <div class="pagination mt-3 d-flex justify-content-between align-items-center">
         <button (click)="goToPreviousPage()" [disabled]="currentPage === 1" class="btn btn-secondary me-2">Previous</button>
         <span>Page {{ currentPage }} of {{ totalPages }}</span>
         <button (click)="goToNextPage()" [disabled]="currentPage === totalPages" class="btn btn-secondary ms-2">Next</button>

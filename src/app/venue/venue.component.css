@@ -1,23 +1,31 @@
 .venue {
-    border: 1px solid #ddd;
-    padding: 1em;
-    margin-bottom: 1em;
-  }
-  
-  .venue-images img {
-    width: 100px;
-    height: auto;
-    margin-right: 0.5em;
-  }
-  
-  .pagination {
-    margin-top: 1em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .pagination button {
-    padding: 0.5em 1em;
-  }
-  
+  display: flex;
+  flex-direction: column; 
+}
+
+.card-body {
+  display: flex;
+  padding: 1em; /* Adjust padding for compactness */
+}
+
+.venue-images {
+  display: flex;
+  flex-direction: column; /* Stack images vertically */
+}
+
+.carousel-inner img {
+  height: auto; /* Maintain aspect ratio */
+  max-height: 200px; /* Set a max height for images in carousel */
+}
+
+.venue-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Space between title/details and buttons */
+}
+
+.button-group {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}

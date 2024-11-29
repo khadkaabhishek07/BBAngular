@@ -36,7 +36,7 @@ export class AddAvailabilityComponent implements OnInit {
   }
 
   fetchAvailability(date: string): void {
-    const url = `https://bandobasta.onrender.com/bandobasta/api/v1/hall/availability?venueId=${this.venueId}&date=${date}`; // Use venueId here
+    const url = `https://bandobasta.onrender.com/bandobasta/api/v1/hall/availability?venueId=${this.venueId}&date=${date}&hallId=${this.hallId}`; // Use venueId here
     this.http.get<any>(url).subscribe(response => {
       this.availabilityDetails = response.data.hallAvailabilityDetails;
     });
