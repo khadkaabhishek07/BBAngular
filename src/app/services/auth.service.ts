@@ -23,6 +23,7 @@ export class AuthService {
   private baseUrl = environment.baseUrl;
   private tokenKey = 'jwt_token';
   private rolesKey = 'user_roles';
+  private user = 'user_name';
   private userIdKey = 'user_id'; // Key to store user ID locally
 
 
@@ -47,6 +48,9 @@ export class AuthService {
         if (response.data && response.data.id) {
           localStorage.setItem(this.userIdKey, response.data.id); // Store user ID
         }
+        if (response.data && response.data.username) {
+          localStorage.setItem(this.user, response.data.username); // Store user name
+        }
       })
     );
   }
@@ -57,6 +61,10 @@ export class AuthService {
 
   getUserId(): string | null {
     return localStorage.getItem(this.userIdKey);
+  }
+
+  getUserName(): string | null {
+    return localStorage.getItem(this.user);
   }
 
   getRoles(): string[] {

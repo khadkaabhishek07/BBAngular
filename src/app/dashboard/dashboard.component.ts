@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -17,10 +18,10 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(['/login']);
     } else {
       // Assuming username is available after login
-      const token = this.authService.getToken();
-      if (token) {
+      const user = this.authService.getUserName();
+      if (user) {
         // Decode token or fetch stored username
-        this.username = 'niranjan'; // Placeholder for decoded username
+        this.username = user; // Placeholder for decoded username
       }
     }
   }

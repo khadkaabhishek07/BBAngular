@@ -29,7 +29,7 @@ import { AddAvailabilityComponent } from './add-availability/add-availability.co
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,  
     FormsModule,          // Add FormsModule here
     HttpClientModule       // Add HttpClientModule for API calls
   ],
