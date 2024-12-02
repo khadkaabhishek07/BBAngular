@@ -14,6 +14,12 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
+  ngOnInit(): void {
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/dashboard']);
+    }
+  }
+  
   onSubmit(): void {
     this.authService.login(this.username, this.password).subscribe({
       next: response => {
