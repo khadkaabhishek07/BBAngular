@@ -17,6 +17,7 @@ import { AddHallComponent } from './add-hall/add-hall.component';
 import { HallComponent } from './hall/hall.component';
 import { HallService } from './services/hall.service';
 import { AddAvailabilityComponent } from './add-availability/add-availability.component';
+import { FoodCategoryManagementComponent } from './food-category-management/food-category-management.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { AddAvailabilityComponent } from './add-availability/add-availability.co
     LoginComponent,
     DashboardComponent,
     VenueComponent,     
-    AddVenueComponent, NavbarComponent, AddHallComponent, HallComponent, AddAvailabilityComponent
+    AddVenueComponent, NavbarComponent, AddHallComponent, HallComponent, AddAvailabilityComponent, FoodCategoryManagementComponent
   ],
   imports: [
     BrowserModule,

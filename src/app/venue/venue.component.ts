@@ -40,6 +40,10 @@ export class VenueComponent implements OnInit {
         this.router.navigate(['/halls'], { queryParams: { venueId } });
     }
 
+    navigateToAddFoodCategory(venueId: number): void {
+        this.router.navigate(['/addfoodcategory'], { queryParams: { venueId } });
+    }
+
     prevSlide(venueId: number): void {
         const carouselElement = document.getElementById(`carousel${venueId}`);
         if (carouselElement) {

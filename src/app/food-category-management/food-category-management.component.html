@@ -1,0 +1,86 @@
+<body>
+    <!-- Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+        <!-- Sidebar Start -->
+        <!-- Sidebar End -->
+
+        <!-- Main Wrapper -->
+        <div class="body-wrapper">
+            <!-- Header Start -->
+           
+            <!-- Header End -->
+
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <h2>Add Food Categories</h2>
+                <form (ngSubmit)="addCategories()">
+                    <div class="mb-3">
+                        <label for="venueId" class="form-label">Venue ID</label>
+                        <input
+                            type="text"
+                            id="venueId"
+                            [(ngModel)]="venueId"
+                            name="venueId"
+                            class="form-control"
+                            placeholder="Enter Venue ID"
+                            required
+                        />
+                    </div>
+
+                    <div *ngFor="let category of foodCategories; let i = index; trackBy: trackByIndex" class="mb-3 border p-3 rounded">
+                        <h5>Category {{ i + 1 }}</h5>
+                        <div class="mb-3">
+                            <label for="category{{ i }}" class="form-label">Category Name</label>
+                            <input
+                                type="text"
+                                id="category{{ i }}"
+                                [(ngModel)]="category.category"
+                                name="category{{ i }}"
+                                class="form-control"
+                                placeholder="Enter Category Name"
+                                required
+                            />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Subcategories</label>
+                            <div *ngFor="let sub of category.subCategories; let j = index; trackBy: trackByIndex" class="d-flex align-items-center mb-2">
+                                <input
+                                    type="text"
+                                    [(ngModel)]="category.subCategories[j]"
+                                    name="subcategory{{ i }}{{ j }}"
+                                    class="form-control me-2"
+                                    placeholder="Enter Subcategory"
+                                    required
+                                />
+                                <button
+                                    type="button"
+                                    class="btn btn-danger"
+                                    (click)="removeSubcategory(i, j)"
+                                >
+                                    Remove
+                                </button>
+                            </div>
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="addSubcategory(i)"
+                            >
+                                Add Subcategory
+                            </button>
+                        </div>
+                        <button
+                            type="button"
+                            class="btn btn-danger"
+                            (click)="removeCategory(i)"
+                        >
+                            Remove Category
+                        </button>
+                    </div>
+
+                    <button type="button" class="btn btn-primary mb-3" (click)="addCategory()">Add New Category</button>
+                    <button type="submit" class="btn btn-success">Save Categories</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

@@ -7,6 +7,7 @@ import { AddVenueComponent } from './add-venue/add-venue.component';
 import { AddHallComponent } from './add-hall/add-hall.component';
 import { HallComponent } from './hall/hall.component';
 import { AddAvailabilityComponent } from './add-availability/add-availability.component';
+import { FoodCategoryManagementComponent } from './food-category-management/food-category-management.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'halls', component: HallComponent },
 
   { path: 'venues', component: VenueComponent },
-  { path: 'add-availability/:hallId/:venueId', component: AddAvailabilityComponent }
+  { path: 'add-availability/:hallId/:venueId', component: AddAvailabilityComponent },
+  { path: 'addfoodcategory', component: FoodCategoryManagementComponent }
   //{ path: '', redirectTo: '/venues', pathMatch: 'full' } // Default route
 ];
 
