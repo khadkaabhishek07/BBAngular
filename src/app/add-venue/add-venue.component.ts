@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
@@ -8,9 +8,9 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './add-venue.component.html',
   styleUrls: ['./add-venue.component.css']
 })
-export class AddVenueComponent {
+export class AddVenueComponent implements OnInit {
   venueDetails = {
-    ownerId: '1',
+    ownerId: '', // Will be dynamically set based on role
     name: '',
     country: 'Nepal',
     state: '',
@@ -32,8 +32,23 @@ export class AddVenueComponent {
   panImage: File | null = null;
   licenseImage: File | null = null;
   venueImages: File[] = [];
+  isAdmin: boolean = false; // Tracks if the user has admin privileges
 
   constructor(private authService: AuthService, private http: HttpClient, private router: Router) {}
+
+  ngOnInit(): void {
+    this.isAdmin = this.authService.isAdmin(); // Check if the user is an admin
+    this.initializeOwnerId();
+  }
+
+  initializeOwnerId(): void {
+    if (!this.isAdmin) {
+      const ownerId = this.authService.getUserId();
+      if (ownerId) {
+        this.venueDetails.ownerId = ownerId;
+      }
+    }
+  }
 
   logout() {
     this.authService.logout();

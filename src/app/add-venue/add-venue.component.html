@@ -17,8 +17,16 @@
                 <form (ngSubmit)="addVenue()">
                     <div class="mb-3">
                         <label for="ownerId" class="form-label">Owner ID</label>
-                        <input type="text" id="ownerId" [(ngModel)]="venueDetails.ownerId" name="ownerId" class="form-control" required>
-                    </div>
+                        <input 
+                          type="text" 
+                          id="ownerId" 
+                          [(ngModel)]="venueDetails.ownerId" 
+                          name="ownerId" 
+                          class="form-control" 
+                          required 
+                          [disabled]="!isAdmin">
+                      </div>
+                      
                     <div class="mb-3">
                         <label for="name" class="form-label">Venue Name</label>
                         <input type="text" id="name" [(ngModel)]="venueDetails.name" name="name" class="form-control" required>
