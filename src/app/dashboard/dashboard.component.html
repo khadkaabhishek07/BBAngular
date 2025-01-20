@@ -29,7 +29,7 @@
                         <div class="card-body">
                             <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
                                 <div class="mb-3 mb-sm-0">
-                                    <h5 class="card-title fw-semibold">Sales Overview</h5>
+                                    <h5 class="card-title fw-semibold">Booking Overview</h5>
                                 </div>
                                 <div>
                                     <select class="form-select">
@@ -56,7 +56,7 @@
                                       <h5 class="card-title mb-9 fw-semibold">Yearly Breakup</h5>
                                       <div class="row align-items-center">
                                           <div class="col-8">
-                                              <h4 class="fw-semibold mb-3">$36,358</h4>
+                                              <h4 class="fw-semibold mb-3">NPR 36,358</h4>
                                               <div class="d-flex align-items-center mb-3">
                                                   <span class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
                                                       <i class="ti ti-arrow-up-left text-success"></i>
@@ -81,7 +81,7 @@
                               <div class="card">
                                   <div class="card-body">
                                       <h5 class="card-title mb-9 fw-semibold">Monthly Earnings</h5>
-                                      <h4 class="fw-semibold mb-3">$6,820</h4>
+                                      <h4 class="fw-semibold mb-3">NPR 6,820</h4>
                                       <div class="d-flex align-items-center pb-1">
                                           <span class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
                                               <i class="ti ti-arrow-down-right text-danger"></i>
@@ -108,7 +108,7 @@
                                       <div class="timeline-badge-wrap d-flex flex-column align-items-center">
                                           <span class="timeline-badge border-2 border border-primary flex-shrink-0 my-8"></span>
                                       </div>
-                                      <div class="timeline-desc fs-3 text-dark mt-n1">Payment received from John Doe of $385.90</div>
+                                      <div class="timeline-desc fs-3 text-dark mt-n1">Payment received of NRS 1,00,000 for hall booking</div>
                                   </li>
           
                                   <!-- Additional transaction items can be added here -->
@@ -120,36 +120,49 @@
                   <!-- Recent Transactions Table -->
                   <div class="col-lg-8 d-flex align-items-stretch">
                       <div class="card w-100">
-                          <div class="card-body p-4">
-                              <h5 class="card-title fw-semibold mb-4">Recent Transactions Table</h5>
-                              <table class="table text-nowrap mb-0 align-middle">
-                                  <thead class="text-dark fs-4">
-                                      <tr>
-                                          <th><h6 class="fw-semibold mb-0">Id</h6></th>
-                                          <th><h6 class="fw-semibold mb-0">Assigned</h6></th>
-                                          <th><h6 class="fw-semibold mb-0">Name</h6></th>
-                                          <th><h6 class="fw-semibold mb-0">Priority</h6></th>
-                                          <th><h6 class="fw-semibold mb-0">Budget</h6></th>
-                                      </tr>
-                                  </thead>
-          
-                                  <!-- Sample rows for the table -->
-                                  <tbody>
-                                      <!-- Add rows dynamically or statically as needed -->
-                                      <!-- Example row -->
-                                      <tr>
-                                          <td><h6>1</h6></td>
-                                          <td><h6>Sunil Joshi</h6><span>Web Designer</span></td>
-                                          <td><p>Elite Admin</p></td>
-                                          <td><span>Low</span></td>
-                                          <td>$3.9</td>
-                                      </tr>
-          
-                                      <!-- Additional rows can be added here -->
-                                  </tbody>
-          
-                              </table> 
-                          </div> 
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-semibold mb-4">Event Booking Management</h5>
+                            <table class="table text-nowrap mb-0 align-middle">
+                              <thead class="text-dark fs-4">
+                                <tr>
+                                  <th><h6 class="fw-semibold mb-0">Event ID</h6></th>
+                                  <th><h6 class="fw-semibold mb-0">Event Name</h6></th>
+                                  <th><h6 class="fw-semibold mb-0">Organizer</h6></th>
+                                  <th><h6 class="fw-semibold mb-0">Booking Status</h6></th>
+                                  <th><h6 class="fw-semibold mb-0">Price</h6></th>
+                                </tr>
+                              </thead>
+                          
+                              <tbody>
+                                <!-- Example Row 1 -->
+                                <tr>
+                                  <td><h6>101</h6></td>
+                                  <td><h6>Annual Tech Fest</h6><span>Conference</span></td>
+                                  <td><h6>Mr. Saleem Thapa</h6><span>Bandobasta Nepal</span></td>
+                                  <td><span class="badge bg-success">Confirmed</span></td>
+                                  <td>NPR 1200</td>                                 
+                                </tr>
+                          
+                                <!-- Example Row 2 -->
+                                <tr>
+                                  <td><h6>102</h6></td>
+                                  <td><h6>Wedding Gala</h6><span>Private Event</span></td>
+                                  <td><h6>Mr. Niranjan Thapa</h6><span>Event Masters</span></td>
+                                  <td><span class="badge bg-warning">Pending</span></td>
+                                  <td>NPR 5000</td>                                 
+                                </tr>
+                          
+                                <!-- Example Row 3 -->
+                                <tr>
+                                  <td><h6>103</h6></td>
+                                  <td><h6>Music Night</h6><span>Concert</span></td>
+                                  <td><h6>Mr. Abhishek Khadka</h6><span>Live Events Inc.</span></td>
+                                  <td><span class="badge bg-danger">Cancelled</span></td>
+                                  <td>NPR 3500</td>                                 
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>                          
                       </div> 
                   </div> 
               </div> 
