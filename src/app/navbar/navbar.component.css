@@ -1,0 +1,40 @@
+/* Sidebar styles */
+.left-sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px; /* Hide sidebar by default */
+    height: 100%;
+    background-color: #f8f9fa;
+    z-index: 1050;
+    transition: left 0.3s ease-in-out;
+  }
+  
+  .left-sidebar.sidebar-open {
+    left: 0; /* Show sidebar when open */
+  }
+  
+  .scroll-sidebar {
+    overflow-y: auto;
+    height: 100%;
+  }
+  
+  .navbar-nav .sidebartoggler {
+    cursor: pointer;
+  }
+  
+  /* Mobile-specific styles */
+  @media (min-width: 992px) {
+    .left-sidebar {
+      left: 0; /* Always visible on larger screens */
+    }
+  }
+  
+  .notification {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 8px;
+    height: 8px;
+  }
+  

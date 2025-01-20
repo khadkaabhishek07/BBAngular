@@ -8,16 +8,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  isSidebarOpen = false; // Sidebar state
+
   constructor(private authService: AuthService, private router: Router) {}
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/login']); // Redirect to the login page
+    this.router.navigate(['/login']); // Redirect to login page
   }
 
-
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
 }
-
-
-
-

@@ -1,60 +1,56 @@
-<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-  data-sidebar-position="fixed" data-header-position="fixed">
+<div class="page-wrapper" id="main-wrapper">
   <!-- Sidebar Start -->
-<aside class="left-sidebar">
-    <!-- Sidebar scroll-->
+  <aside class="left-sidebar" [ngClass]="{ 'sidebar-open': isSidebarOpen }">
     <div>
-        <div class="brand-logo d-flex align-items-center justify-content-between">
-            <a [routerLink]="['/dashboard']" class="text-nowrap logo-img">
-                <img src="../assets/images/logos/logo.png" width="180" alt="" />
-            </a>
-            <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-                <i class="ti ti-x fs-8"></i>
-            </div>
+      <div class="brand-logo d-flex align-items-center justify-content-between">
+        <a [routerLink]="['/dashboard']" class="text-nowrap logo-img">
+          <img src="../assets/images/logos/logo.png" width="180" alt="Logo" />
+        </a>
+        <div
+          class="close-btn d-xl-none d-block sidebartoggler cursor-pointer"
+          (click)="toggleSidebar()"
+        >
+          <i class="ti ti-x fs-8"></i>
         </div>
-        <!-- Sidebar navigation-->
-        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
-            <ul id="sidebarnav">
-                <li class="nav-small-cap">
-                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">Home</span>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" [routerLink]="['/dashboard']" aria-expanded="false">
-                        <span><i class="ti ti-layout-dashboard"></i></span>
-                        <span class="hide-menu">Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-small-cap">
-                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">UI COMPONENTS</span>
-                </li>
-                <!-- Other UI components links -->
-                <li class="sidebar-item">
-                    <a class="sidebar-link" [routerLink]="['/venues']" aria-expanded="false">
-                        <span><i class="ti ti-venue"></i></span>
-                        <span class="hide-menu">Venues</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                  <a class="sidebar-link" [routerLink]="['/addvenue']" aria-expanded="false">
-                      <span><i class="ti ti-venue"></i></span>
-                      <span class="hide-menu">Add Venue</span>
-                  </a>
-              </li>                        
-                <!-- Additional links as needed -->
-            </ul>
-        </nav> <!-- End Sidebar navigation -->
-    </div> <!-- End Sidebar scroll-->
-</aside> <!-- Sidebar End -->
-  <!--  Main wrapper -->
+      </div>
+      <nav class="sidebar-nav scroll-sidebar">
+        <ul id="sidebarnav">
+          <li class="nav-small-cap">
+            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span class="hide-menu">Home</span>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" [routerLink]="['/dashboard']" aria-expanded="false">
+              <span><i class="ti ti-layout-dashboard"></i></span>
+              <span class="hide-menu">Dashboard</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" [routerLink]="['/venues']" aria-expanded="false">
+              <span><i class="ti ti-venue"></i></span>
+              <span class="hide-menu">Venues</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" [routerLink]="['/addvenue']" aria-expanded="false">
+              <span><i class="ti ti-venue"></i></span>
+              <span class="hide-menu">Add Venue</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </aside>
+  <!-- Sidebar End -->
+
+  <!-- Main wrapper -->
   <div class="body-wrapper">
-    <!--  Header Start -->
+    <!-- Header Start -->
     <header class="app-header">
       <nav class="navbar navbar-expand-lg navbar-light">
         <ul class="navbar-nav">
           <li class="nav-item d-block d-xl-none">
-            <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+            <a class="nav-link sidebartoggler nav-icon-hover" (click)="toggleSidebar()" href="javascript:void(0)">
               <i class="ti ti-menu-2"></i>
             </a>
           </li>
@@ -88,7 +84,6 @@
         </div>
       </nav>
     </header>
-    <!--  Header End -->
-  
+    <!-- Header End -->
   </div>
 </div>

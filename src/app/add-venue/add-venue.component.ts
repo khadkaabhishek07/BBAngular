@@ -26,6 +26,7 @@ export class AddVenueComponent {
     licenseNumber: '',
     permanentAccountNumber: '',
     description: '',
+    menuPrice: 0
   };
 
   panImage: File | null = null;

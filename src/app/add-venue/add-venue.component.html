@@ -1,12 +1,3 @@
-<!-- <header class="app-header">
-    <nav class="navbar">
-        <div class="container-fluid d-flex justify-content-between">
-            <h3>Admin Panel</h3>
-            <button (click)="logout()" class="btn btn-danger">Logout</button>
-        </div>
-    </nav>
-</header> -->
-
 <body>
     <!-- Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
@@ -68,6 +59,10 @@
                         <label for="secondaryPhoneNumber" class="form-label">Secondary Phone Number</label>
                         <input type="text" id="secondaryPhoneNumber" [(ngModel)]="venueDetails.secondaryPhoneNumber" name="secondaryPhoneNumber" class="form-control">
                     </div>
+                    <div class="mb-3">
+                        <label for="menuPrice" class="form-label">Menu Price</label>
+                        <input type="number" id="menuPrice" [(ngModel)]="venueDetails.menuPrice" name="menuPrice" class="form-control" required>
+                      </div>                      
                     <div class="mb-3">
                         <label for="countryCode" class="form-label">Country Code</label>
                         <input type="text" id="countryCode" [(ngModel)]="venueDetails.countryCode" name="countryCode" class="form-control" value="+977" disabled>
