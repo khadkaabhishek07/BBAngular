@@ -127,5 +127,4 @@ export class AddVenueComponent implements OnInit {
       },
     });
   }
-  
 }
