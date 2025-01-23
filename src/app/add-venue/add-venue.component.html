@@ -99,11 +99,45 @@
                         <label for="licenseImage" class="form-label">License Image</label>
                         <input type="file" id="licenseImage" (change)="onLicenseImageChange($event)" class="form-control" required>
                     </div>
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label for="venueImages" class="form-label">Venue Images</label>
                         <input type="file" id="venueImages" (change)="onVenueImagesChange($event)" class="form-control" multiple>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add Venue</button>
+                    </div> -->
+                    <div class="mb-3">
+                        <label for="venueImages" class="form-label">Venue Images</label>
+                        <div class="d-flex flex-wrap gap-2">
+                          <!-- Display previews -->
+                          <div *ngFor="let image of venueImages; let i = index" class="position-relative">
+                            <img [src]="image.preview" alt="Venue Image" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover;">
+                            <button
+                              type="button"
+                              class="btn-close position-absolute top-0 end-0"
+                              (click)="removeImage(i)"
+                              style="background-color: white;"
+                            ></button>
+                          </div>
+                          <!-- Add image button -->
+                          <div>
+                            <label for="addVenueImage" class="btn btn-outline-secondary d-flex justify-content-center align-items-center" style="width: 100px; height: 100px;">
+                              <span>+</span>
+                            </label>
+                            <input
+                              type="file"
+                              id="addVenueImage"
+                              (change)="addVenueImages($event)"
+                              class="d-none"
+                              multiple
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      
+                    <!-- <button type="submit" class="btn btn-primary">Add Venue</button> -->
+                    <button type="submit" class="btn btn-primary" [disabled]="isLoading">
+                        <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        <span *ngIf="!isLoading">Add Venue</span>
+                      </button>                      
+                      
                 </form>
             </div>            
         </div> 

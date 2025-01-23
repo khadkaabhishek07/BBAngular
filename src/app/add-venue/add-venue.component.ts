@@ -6,11 +6,11 @@ import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-add-venue',
   templateUrl: './add-venue.component.html',
-  styleUrls: ['./add-venue.component.css']
+  styleUrls: ['./add-venue.component.css'],
 })
 export class AddVenueComponent implements OnInit {
   venueDetails = {
-    ownerId: '', // Will be dynamically set based on role
+    ownerId: '',
     name: '',
     country: 'Nepal',
     state: '',
@@ -26,18 +26,21 @@ export class AddVenueComponent implements OnInit {
     licenseNumber: '',
     permanentAccountNumber: '',
     description: '',
-    menuPrice: 0
+    menuPrice: 0,
   };
 
   panImage: File | null = null;
   licenseImage: File | null = null;
-  venueImages: File[] = [];
-  isAdmin: boolean = false; // Tracks if the user has admin privileges
+
+  // Array to store files along with their preview URLs
+  venueImages: { file: File; preview: string }[] = [];
+  isAdmin: boolean = false;
+  isLoading: boolean = false; // Tracks loading state
 
   constructor(private authService: AuthService, private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
-    this.isAdmin = this.authService.isAdmin(); // Check if the user is an admin
+    this.isAdmin = this.authService.isAdmin();
     this.initializeOwnerId();
   }
 
@@ -50,9 +53,9 @@ export class AddVenueComponent implements OnInit {
     }
   }
 
-  logout() {
+  logout(): void {
     this.authService.logout();
-    this.router.navigate(['/login']); // Redirect to the login page
+    this.router.navigate(['/login']);
   }
 
   onPanImageChange(event: Event): void {
@@ -69,39 +72,60 @@ export class AddVenueComponent implements OnInit {
     }
   }
 
-  onVenueImagesChange(event: Event): void {
+  addVenueImages(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files?.length) {
-      this.venueImages = Array.from(input.files);
+      Array.from(input.files).forEach((file) => {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.venueImages.push({ file, preview: e.target.result });
+        };
+        reader.readAsDataURL(file);
+      });
     }
+  }
+
+  removeImage(index: number): void {
+    this.venueImages.splice(index, 1);
   }
 
   addVenue(): void {
     const formData = new FormData();
-
+  
     // Append venue details as JSON
-    formData.append('venue', new Blob([JSON.stringify(this.venueDetails)], { type: 'application/json' }));
-
-    // Append files
+    formData.append(
+      'venue',
+      new Blob([JSON.stringify(this.venueDetails)], { type: 'application/json' })
+    );
+  
+    // Append single file fields
     if (this.panImage) {
       formData.append('panImage', this.panImage);
     }
     if (this.licenseImage) {
       formData.append('licenseImage', this.licenseImage);
     }
-    this.venueImages.forEach((file) => {
+  
+    // Append multiple venue images as individual files under the same key
+    this.venueImages.forEach(({ file }) => {
       formData.append('venueImages', file);
     });
-
+  
+    // Set loading state
+    this.isLoading = true;
+  
     // API Call
     this.http.post('https://bandobasta.onrender.com/bandobasta/api/v1/venue', formData).subscribe({
       next: () => {
         console.log('Venue added successfully');
+        this.isLoading = false;
         this.router.navigate(['/venues']);
       },
       error: (error) => {
         console.error('Error adding venue:', error);
+        this.isLoading = false;
       },
     });
   }
+  
 }
