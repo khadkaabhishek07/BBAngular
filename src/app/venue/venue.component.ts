@@ -13,7 +13,7 @@ export class VenueComponent implements OnInit {
     venues: any[] = [];
     currentPage: number = 1;
     totalPages: number = 1;
-    pageSize: number = 2;
+    pageSize: number = 10;
     ownerId: string | null = null; // For owner-specific venues
 
     constructor(
